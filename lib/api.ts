@@ -1,79 +1,37 @@
-class ApiClient {
-  constructor() {
-    this.cache = new Map();  // Cache des réponses API
-    this.cacheDuration = 60000;  // Durée de cache en millisecondes (ex. 1 minute)
-  }
+import { apiClient } from './api-client' // Assurez-vous que le chemin d'importation est correct
 
-  // Méthode de récupération avec cache
-  async fetchWithCache(url, options) {
-    const cacheKey = this.createCacheKey(url, options);
-
-    // Vérifier si la réponse est en cache et si elle est encore valide
-    const cachedResponse = this.cache.get(cacheKey);
-    if (cachedResponse && Date.now() - cachedResponse.timestamp < this.cacheDuration) {
-      console.log("Utilisation du cache pour:", url);
-      return cachedResponse.data;  // Retourne les données en cache si elles sont valides
-    }
-
-    // Si pas en cache ou cache expiré, on fait une requête API
-    const response = await fetch(url, options);
-
-    if (!response.ok) {
-      throw new Error(`Erreur lors de la récupération des données depuis l'API: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    // Mettre en cache la réponse
-    this.cache.set(cacheKey, {
-      data,
-      timestamp: Date.now(),
-    });
-
-    console.log("Nouvelle requête API pour:", url);
-    return data;
-  }
-
-  // Générer une clé de cache unique pour chaque URL + options
-  createCacheKey(url, options) {
-    return `${url}-${JSON.stringify(options?.body || {})}`;
-  }
-
-  // Méthodes pour récupérer des données
-  async fetchServerStats() {
-    const url = "https://feegaffe.fr/poke/api.php?endpoint=stats";
-    return this.fetchWithCache(url, { method: "GET" });
-  }
-
-  async fetchPlayerList() {
-    const url = "https://feegaffe.fr/poke/api.php?endpoint=joueur";
-    return this.fetchWithCache(url, { method: "GET" });
-  }
-
-  async fetchLeaderboard() {
-    const url = "https://feegaffe.fr/poke/getdata.php";
-    return this.fetchWithCache(url, { method: "GET" });
-  }
-}
-
-// Instancier l'ApiClient
-const apiClient = new ApiClient();
-
-// Exemple d'appel des différentes fonctions
-async function loadData() {
+// Function to fetch server stats
+export async function fetchServerStats() {
   try {
-    const serverStats = await apiClient.fetchServerStats();
-    console.log('Server Stats:', serverStats);
-
-    const playerList = await apiClient.fetchPlayerList();
-    console.log('Player List:', playerList);
-
-    const leaderboard = await apiClient.fetchLeaderboard();
-    console.log('Leaderboard:', leaderboard);
+    // Utilisation de apiClient pour effectuer la requête et utiliser le cache
+    const response = await apiClient.get("https://feegaffe.fr/poke/api.php?endpoint=stats");
+    return response;
   } catch (error) {
-    console.error("Erreur lors du chargement des données:", error);
+    console.error("Error fetching server stats:", error);
+    return { players_online: 0 }; // Default fallback
   }
 }
 
-// Appeler la fonction pour charger les données
-loadData();
+// Function to fetch player list
+export async function fetchPlayerList() {
+  try {
+    // Utilisation de apiClient pour effectuer la requête et utiliser le cache
+    const response = await apiClient.get("https://feegaffe.fr/poke/api.php?endpoint=joueur");
+    return response;
+  } catch (error) {
+    console.error("Error fetching player list:", error);
+    return { players: [] }; // Default fallback
+  }
+}
+
+// Function to fetch leaderboard data
+export async function fetchLeaderboard() {
+  try {
+    // Utilisation de apiClient pour effectuer la requête et utiliser le cache
+    const response = await apiClient.get("https://feegaffe.fr/poke/getdata.php");
+    return response;
+  } catch (error) {
+    console.error("Error fetching leaderboard data:", error);
+    return { status: "error", players: [] }; // Default fallback
+  }
+}
