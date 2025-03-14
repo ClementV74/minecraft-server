@@ -74,7 +74,7 @@ export default function LeaderboardPreview() {
         </div>
 
         <TabsContent value="pokemon" className="mt-0">
-          <LeaderboardTable players={topPokemonPlayers} valueKey="pokemon" title="Pokémon Caught" />
+          <LeaderboardTable players={topPokemonPlayers} valueKey="pokemon" title="Pokémon Attrapé" />
         </TabsContent>
 
         <TabsContent value="shiny" className="mt-0">
