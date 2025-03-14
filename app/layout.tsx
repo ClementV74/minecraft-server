@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "Pokecraft - Serveur Pokémon Minecraft",
   description: "Serveur Pokémon Minecraft - Attrapez, entraînez et combattez avec vos Pokémon préférés",
-    generator: 'v0.dev'
+   
 }
 
 export default function RootLayout({
