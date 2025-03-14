@@ -42,7 +42,7 @@ export default function HomePage() {
             }}
             transition={{ duration: 0.3 }}
           >
-            <h2 className="text-2xl font-bold mb-6 text-red-400">Online Players</h2>
+            <h2 className="text-2xl font-bold mb-6 text-red-400">Joueur en ligne</h2>
             <Suspense fallback={<LoadingState />}>
               <PlayerList />
             </Suspense>
@@ -66,7 +66,7 @@ export default function HomePage() {
             }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 3 }}
           >
-            Player Rankings
+            Rank
           </motion.h2>
           <Suspense fallback={<LoadingState />}>
             <LeaderboardPreview />

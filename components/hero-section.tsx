@@ -86,7 +86,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Join our amazing Minecraft community and embark on epic adventures with players from around the world.
+            Rejoinger un serveur incroyable
           </motion.p>
 
           <motion.div

@@ -68,7 +68,7 @@ export default function LeaderboardPreview() {
 
           <Link href="/leaderboard">
             <Button variant="link" className="text-red-400">
-              View Full Leaderboard <ArrowRight className="ml-1 h-4 w-4" />
+              Voir le classement complet <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
           </Link>
         </div>

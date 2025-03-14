@@ -83,7 +83,7 @@ export default function FullLeaderboard() {
         </div>
 
         <TabsContent value="pokemon" className="mt-0">
-          <LeaderboardTable players={filteredPokemonPlayers} valueKey="pokemon" title="Pokémon Caught" />
+          <LeaderboardTable players={filteredPokemonPlayers} valueKey="pokemon" title="Pokémon attrapé" />
         </TabsContent>
 
         <TabsContent value="shiny" className="mt-0">
@@ -108,8 +108,8 @@ function LeaderboardTable({ players, valueKey, title }: { players: any[]; valueK
       <table className="min-w-full">
         <thead>
           <tr className="border-b border-gray-700">
-            <th className="py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-16">Rank</th>
-            <th className="py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Player</th>
+            <th className="py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider w-16">Classement</th>
+            <th className="py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Joueur</th>
             <th className="py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">{title}</th>
           </tr>
         </thead>
