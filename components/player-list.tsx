@@ -11,7 +11,7 @@ export default async function PlayerList() {
   if (players.length === 0) {
     return (
       <div className="text-center py-8 text-gray-400">
-        <p>No players are currently online</p>
+        <p>Auncun player en ligne</p>
       </div>
     )
   }
